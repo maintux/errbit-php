@@ -108,6 +108,7 @@ class Errbit {
 	 *   - cgi_data
 	 *   - params_filters
 	 *   - backtrace_filters
+	 *   - ignore_@_operator
 	 *
 	 * @param [Array] $config
 	 *   the full configuration
@@ -173,6 +174,15 @@ class Errbit {
 		return $this;
 	}
 
+	public function get_config($config_name) {
+		if(isset($this->_config[$config_name])) {
+			return $this->_config[$config_name];
+		}
+		else {
+			return null;
+		}
+	}
+
 	// -- Private Methods
 
 	private function _checkConfig() {
@@ -224,6 +234,10 @@ class Errbit {
 			$this->_config['backtrace_filters'] = array(
 				sprintf('/^%s/', preg_quote($this->_config['project_root'], '/')) => '[PROJECT_ROOT]'
 			);
+		}
+
+		if(!isset($this->_config['ignore_@_operator'])) {
+			$this->_config['ignore_@_operator'] = true;
 		}
 	}
 

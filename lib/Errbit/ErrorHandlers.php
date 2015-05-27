@@ -42,6 +42,10 @@ class Errbit_ErrorHandlers {
 	// -- Handlers
 
 	public function onError($code, $message, $file, $line) {
+
+		// error was suppressed with the @-operator
+    if ($this->_errbit->get_config('ignore_@_operator') === false && 0 === error_reporting()) { return true;}
+
 		switch ($code) {
 			case E_NOTICE:
 			case E_USER_NOTICE:

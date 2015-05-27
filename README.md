@@ -45,7 +45,8 @@ Errbit::instance()
     'project_root'      => '/your/project/root',                 // optional
     'environment_name'  => 'production',                         // optional
     'params_filters'    => array('/password/', '/card_number/'), // optional
-    'backtrace_filters' => array('#/some/long/path#' => '')      // optional
+    'backtrace_filters' => array('#/some/long/path#' => ''),      // optional
+    'ignore_@_operator' => true // optional - default: true
   ))
   ->start();
 ```
